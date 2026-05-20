@@ -34,7 +34,7 @@ Keep building amazing things!
 
 To create a new skill:
 
-1. Create a folder in `plugins/` (e.g., `plugins/my-skill/`)
+1. Create a folder in `skills/` (e.g., `skills/my-skill/`)
 2. Add a `SKILL.md` file with YAML frontmatter
 3. Optionally add supporting files in `scripts/`, `examples/`, or `resources/`
 4. Run `oma install my-skill`

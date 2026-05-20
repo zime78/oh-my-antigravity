@@ -16,7 +16,7 @@ NC='\033[0m' # No Color
 # Paths
 OMA_HOME="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 ANTIGRAVITY_GLOBAL="$HOME/.gemini/antigravity"
-ANTIGRAVITY_PROJECT=".agent"
+ANTIGRAVITY_PROJECT=".agents"
 
 # State
 SCOPE="global"
@@ -45,7 +45,7 @@ show_help() {
     echo "  help                Show this help message"
     echo ""
     echo -e "${YELLOW}OPTIONS:${NC}"
-    echo "  --project           Install to current project only (.agent/skills)"
+    echo "  --project           Install to current project only (.agents/skills)"
     echo "  --global            Install globally (~/.gemini/antigravity/skills)"
     echo ""
     echo -e "${YELLOW}EXAMPLES:${NC}"
@@ -92,7 +92,7 @@ install_plugin() {
         return 1
     fi
     
-    local source_path="${OMA_HOME}/plugins/${plugin_name}"
+    local source_path="${OMA_HOME}/skills/${plugin_name}"
     
     if [ ! -d "$source_path" ]; then
         error "Error: Plugin '$plugin_name' not found in OMA repository."
@@ -137,7 +137,7 @@ remove_plugin() {
 }
 
 list_plugins() {
-    local plugins_path="${OMA_HOME}/plugins"
+    local plugins_path="${OMA_HOME}/skills"
     
     if [ ! -d "$plugins_path" ]; then
         warning "No plugins directory found."
@@ -191,7 +191,7 @@ list_installed() {
         for plugin_dir in "$project_path"/*/; do
             if [ -d "$plugin_dir" ]; then
                 if [ "$has_project" = false ]; then
-                    echo -e "  ${CYAN}Project (.agent/skills):${NC}"
+                    echo -e "  ${CYAN}Project (.agents/skills):${NC}"
                     has_project=true
                 fi
                 echo "    📁 $(basename "$plugin_dir")"
